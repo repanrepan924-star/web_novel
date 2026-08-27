@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pemasok Novel - Reader & Writer Book</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Sidebar Navigasi -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo-icon">📚</span>
+      <h2>NovelHub <span>Supplier</span></h2>
+    </div>
+    <nav class="menu">
+      <button class="menu-item active" data-target="page-dashboard">
+        <span>🏠</span> <span>Dashboard</span>
+      </button>
+      <button class="menu-item" data-target="page-buat-bab">
+        <span>✍️</span> <span>Tulis Cerita Buku</span>
+      </button>
+      <button class="menu-item" data-target="page-novel-saya">
+        <span>📖</span> <span>Novel Saya</span>
+      </button>
+      <button class="menu-item" data-target="page-royalti">
+        <span>💰</span> <span>Laporan Royalti</span>
+      </button>
+      <button class="menu-item" data-target="page-ulasan">
+        <span>💬</span> <span>Ulasan Pembaca</span>
+      </button>
+      <button class="menu-item" data-target="page-pengaturan">
+        <span>⚙️</span> <span>Pengaturan</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main class="main-content">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Buka menu dashboard" aria-expanded="false">☰</button>
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" id="chapter-search" placeholder="Cari bab novel..." />
+      </div>
+      <div class="user-profile">
+        <span class="avatar">✍️</span>
+        <div>
+          <span class="user-name">Penulis/Pemasok Novel</span>
+          <span class="user-role">Kreator Terverifikasi</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. HALAMAN DASHBOARD UTAMA (Bersih dari bagian Royalti, Ulasan & Pengaturan) -->
+    <div id="page-dashboard" class="page-view active">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">💵</span>
+          <div>
+            <h3>Rp 12.450.000</h3>
+            <p>Estimasi Royalti</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">👁️</span>
+          <div>
+            <h3>142.800</h3>
+            <p>Total Pembaca</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📚</span>
+          <div>
+            <h3 id="stat-total-bab">128 Bab</h3>
+            <p>Bab Dipublikasi</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⭐</span>
+          <div>
+            <h3>4.8 / 5.0</h3>
+            <p>Rating Rata-rata</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="card table-card">
+          <div class="card-header">
+            <div>
+              <h3>Daftar Bab Novel</h3>
+              <p class="subtitle">Kelola dan atur jadwal rilis karya Anda.</p>
+            </div>
+            <button class="btn btn-primary" id="open-write-page-btn">+ Tulis Bab di Buku</button>
+          </div>
+
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="Dipublikasi">Dipublikasi</button>
+            <button class="filter-btn" data-filter="Dijadwalkan">Dijadwalkan</button>
+            <button class="filter-btn" data-filter="Draft">Draft</button>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Judul Bab</th>
+                  <th>Status</th>
+                  <th>Tanggal Rilis</th>
+                  <th>Pembaca</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="chapter-table-body">
+                <tr id="row-45" data-status="Dipublikasi">
+                  <td class="font-medium chapter-title-cell" data-label="Judul Bab">Bab 45: Puncak Pertempuran Klan</td>
+                  <td data-label="Status"><span class="badge badge-success">Dipublikasi</span></td>
+                  <td data-label="Tanggal Rilis">25 Agu 2026</td>
+                  <td data-label="Pembaca">12.450</td>
+                  <td data-label="Aksi">
+                    <button class="btn-action read-btn" style="margin-right: 0.3rem;">📖 Baca Buku</button>
+                    <button class="btn-action edit-btn" style="margin-right: 0.3rem;">✏️ Edit</button>
+                    <button class="btn-action delete-btn" aria-label="Hapus bab">🗑️ Hapus</button>
+                  </td>
+                </tr>
+                <tr id="row-46" data-status="Dijadwalkan">
+                  <td class="font-medium chapter-title-cell" data-label="Judul Bab">Bab 46: Rahasia Kunci Kuno</td>
+                  <td data-label="Status"><span class="badge badge-warning">Dijadwalkan</span></td>
+                  <td data-label="Tanggal Rilis">27 Agu 2026</td>
+                  <td data-label="Pembaca">-</td>
+                  <td data-label="Aksi">
+                    <button class="btn-action read-btn" style="margin-right: 0.3rem;">📖 Baca Buku</button>
+                    <button class="btn-action edit-btn" style="margin-right: 0.3rem;">✏️ Edit</button>
+                    <button class="btn-action delete-btn" aria-label="Hapus bab">🗑️ Hapus</button>
+                  </td>
+                </tr>
+                <tr id="row-47" data-status="Draft">
+                  <td class="font-medium chapter-title-cell" data-label="Judul Bab">Bab 47: Menuju Benua Baru</td>
+                  <td data-label="Status"><span class="badge badge-secondary">Draft</span></td>
+                  <td data-label="Tanggal Rilis">-</td>
+                  <td data-label="Pembaca">-</td>
+                  <td data-label="Aksi">
+                    <button class="btn-action read-btn" style="margin-right: 0.3rem;">📖 Baca Buku</button>
+                    <button class="btn-action edit-btn" style="margin-right: 0.3rem;">✏️ Edit</button>
+                    <button class="btn-action delete-btn" aria-label="Hapus bab">🗑️ Hapus</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card info-card">
+          <h3>Pengumuman Platform</h3>
+          <div class="announcement-item">
+            <span class="tag tag-promo">Promo</span>
+            <h4>Event Penulis Musim Panas 2026</h4>
+            <p>Dapatkan bonus royalti tambahan 15% untuk setiap pembaca baru di bab premium.</p>
+          </div>
+          <div class="announcement-item">
+            <span class="tag tag-info">Info</span>
+            <h4>Penyelesaian Pembayaran Royalti</h4>
+            <p>Pencairan royalti periode Juli telah dikirimkan ke rekening masing-masing.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card access-card">
+        <div class="card-header">
+          <div>
+            <h3>Akses Perangkat</h3>
+            <p class="subtitle">Kunjungan dari perangkat lain yang terhubung ke sistem utama.</p>
+          </div>
+          <button class="btn btn-primary" id="refresh-accesses-btn" type="button">Segarkan</button>
+        </div>
+        <div class="access-summary" id="access-summary">Memuat data akses...</div>
+        <div class="table-responsive">
+          <table class="data-table access-table">
+            <thead>
+              <tr>
+                <th>Perangkat</th>
+                <th>Waktu</th>
+                <th>Bahasa</th>
+                <th>Zona Waktu</th>
+              </tr>
+            </thead>
+            <tbody id="access-table-body">
+              <tr><td colspan="4" class="empty-state">Belum ada akses tercatat.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- 2. HALAMAN TULIS CERITA BUKU -->
+    <div id="page-buat-bab" class="page-view">
+      <div style="max-width: 1000px; margin: 0 auto;">
+        <div style="background: #2b261f; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 4px solid #4a3e2e;">
+          <form id="standalone-chapter-form">
+            <div style="background: #fdf6e3; border-radius: 6px; color: #2c221e; font-family: 'Georgia', serif; display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 540px; position: relative;">
+              
+              <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.15); transform: translateX(-50%);"></div>
+
+              <!-- HALAMAN KIRI -->
+              <div style="padding: 2rem; border-right: 1px solid rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; color: #8c6d46; letter-spacing: 1px;">Lembar Kiri • Pengaturan</span>
+                  <h2 style="font-family: 'Georgia', serif; font-size: 1.6rem; color: #3b2817; margin-top: 0.5rem; margin-bottom: 1.5rem;">Informasi Bab Novel</h2>
+
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label style="color: #4a3e2e; font-weight: bold; font-size: 0.85rem;">Judul Bab Novel</label>
+                    <input type="text" id="standalone-title" placeholder="Contoh: Bab 48: Takdir Dewa Pedang" required style="background: #fff8eb; border: 1px solid #dcd0b9; color: #2c221e; border-radius: 4px; padding: 0.6rem; width: 100%; font-family: inherit;" />
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label style="color: #4a3e2e; font-weight: bold; font-size: 0.85rem;">Status Publikasi</label>
+                    <select id="standalone-status" style="background: #fff8eb; border: 1px solid #dcd0b9; color: #2c221e; border-radius: 4px; padding: 0.6rem; width: 100%; font-family: inherit;">
+                      <option value="Draft">Draft (Simpan Sementara)</option>
+                      <option value="Dijadwalkan">Dijadwalkan</option>
+                      <option value="Dipublikasi">Dipublikasi Langsung</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2d5bd; padding-top: 0.75rem;">
+                  <span id="autosave-status" style="font-size: 0.75rem; color: #8c6d46;">Draf tersimpan otomatis</span>
+                  <button type="button" id="clear-draft-btn" style="background: none; border: none; color: #c0392b; cursor: pointer; font-size: 0.75rem;">Hapus Naskah</button>
+                </div>
+              </div>
+
+              <!-- HALAMAN KANAN -->
+              <div style="padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div class="editor-toolbar" style="display: flex; flex-wrap: wrap; gap: 0.3rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2d5bd; margin-bottom: 0.75rem;">
+                    <button type="button" class="btn-action" data-command="bold" style="background: #eae0cf; color: #3b2817; border: 1px solid #d4c4a8;"><b>B</b></button>
+                    <button type="button" class="btn-action" data-command="italic" style="background: #eae0cf; color: #3b2817; border: 1px solid #d4c4a8;"><i>I</i></button>
+                    <button type="button" class="btn-action" data-command="underline" style="background: #eae0cf; color: #3b2817; border: 1px solid #d4c4a8;"><u>U</u></button>
+                  </div>
+                  <div id="story-editor" contenteditable="true" style="min-height: 320px; max-height: 380px; overflow-y: auto; font-size: 1rem; line-height: 1.8; color: #1a1412; outline: none;" placeholder="Mulai menulis cerita novel Anda di lembaran buku ini..."></div>
+                </div>
+
+                <div style="border-top: 1px solid #e2d5bd; padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 0.8rem; color: #8c6d46;">
+                    <span id="word-count">0</span> Kata | <span id="char-count">0</span> Karakter
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="background: #8c6d46; border-color: #6b5335; padding: 0.5rem 1.2rem;">Terbitkan Bab 📖</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. HALAMAN NOVEL SAYA -->
+    <div id="page-novel-saya" class="page-view">
+      <div class="card">
+        <h2>📖 Novel Saya</h2>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Daftar seluruh karya novel yang Anda tulis.</p>
+        <div style="padding: 2rem; text-align: center; border: 2px dashed var(--border-color); border-radius: var(--radius-md);">
+          <h3>Petualangan Dewa Pedang</h3>
+          <p style="color: var(--text-muted); margin-top: 0.5rem;">Total 128 Bab • Genre: Fantasi • Status: Berjalan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. HALAMAN LAPORAN ROYALTI (DIPISAHKAN) -->
+    <div id="page-royalti" class="page-view">
+      <div class="card">
+        <h2>💰 Laporan Royalti</h2>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Rincian pendapatan dan riwayat pencairan saldo.</p>
+        
+        <div style="background: #1e293b; border: 1px solid #334155; padding: 1.5rem; border-radius: var(--radius-md); color: #fff;">
+          <h3 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">Total Penarikan Bulan Ini: Rp 12.450.000</h3>
+          <p style="color: #94a3b8; font-size: 0.9rem;">Status: Siap Ditransfer pada 01 Sep 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. HALAMAN ULASAN PEMBACA (DIPISAHKAN) -->
+    <div id="page-ulasan" class="page-view">
+      <div class="card">
+        <h2>💬 Ulasan Pembaca</h2>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Ulasan dan masukan terbaru dari pembaca Anda.</p>
+        
+        <div style="background: #1e293b; border: 1px solid #334155; padding: 1.5rem; border-radius: var(--radius-md); color: #fff;">
+          <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem;">Pembaca_99 ⭐⭐⭐⭐⭐</h4>
+          <p style="color: #cbd5e1; font-style: italic;">"Ceritanya semakin seru di bab 45! Ditunggu kelanjutannya min."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. HALAMAN PENGATURAN AKUN (DIPISAHKAN) -->
+    <div id="page-pengaturan" class="page-view">
+      <div class="card" style="max-width: 500px;">
+        <h2>⚙️ Pengaturan Akun</h2>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Kelola profil penulis dan rekening pembayaran.</p>
+        
+        <form id="settings-form">
+          <div class="form-group" style="margin-bottom: 1.2rem;">
+            <label for="profile-name" style="display: block; margin-bottom: 0.5rem; color: #94a3b8;">Nama Penulis</label>
+            <input type="text" id="profile-name" value="Penulis/Pemasok Novel" style="width: 100%; padding: 0.75rem; background: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 6px;" />
+          </div>
+          <button type="submit" class="btn btn-primary" style="background: #0ea5e9; color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer;">Simpan Pengaturan</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL MEMBACA BUKU DIGITAL -->
+  <div class="modal-overlay" id="reader-modal-overlay">
+    <div style="background: #2b261f; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 4px solid #4a3e2e; width: 90%; max-width: 850px; position: relative;">
+      
+      <button class="close-modal" id="close-reader-modal-btn" style="position: absolute; right: 25px; top: 25px; z-index: 10; color: #fff; background: rgba(0,0,0,0.4); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">&times;</button>
+
+      <div style="background: #fdf6e3; border-radius: 6px; color: #2c221e; font-family: 'Georgia', serif; display: grid; grid-template-columns: 1fr; min-height: 480px; position: relative; padding: 2.5rem;">
+        
+        <div style="border-bottom: 2px dashed #dcd0b9; padding-bottom: 1rem; margin-bottom: 1.5rem; text-align: center;">
+          <h2 id="reader-modal-title" style="margin: 0; font-family: 'Georgia', serif; color: #3b2817;">Judul Bab Novel</h2>
+          <span id="reader-modal-meta" style="font-size: 0.85rem; color: #8c6d46; margin-top: 0.4rem; display: block;">Dipublikasi • 0 Kata</span>
+        </div>
+        
+        <div id="reader-modal-body" style="height: 320px; overflow-y: auto; font-size: 1.1rem; line-height: 1.9; color: #1a1412; padding-right: 1rem;">
+        </div>
+
+        <div style="border-top: 1px solid #e2d5bd; padding-top: 0.75rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; color: #8c6d46;">NovelHub Digital Book Reader</span>
+          <button type="button" class="btn btn-secondary" id="close-reader-btn" style="background: #8c6d46; color: #fff; border: none; padding: 0.4rem 1rem; cursor: pointer;">Tutup Buku</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

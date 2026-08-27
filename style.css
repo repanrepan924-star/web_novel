@@ -1,0 +1,737 @@
+/* ==========================================
+   1. RESET & VARIABEL UTAMA (THEME STYLES)
+   ========================================== */
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --bg-hover: #334155;
+  --primary: #0ea5e9;
+  --primary-hover: #0284c7;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   2. KONTROL TAMPILAN HALAMAN (PAGE SWITCHING)
+   ========================================== */
+.page-view {
+  display: none;
+}
+
+.page-view.active {
+  display: block;
+}
+
+/* ==========================================
+   3. SIDEBAR & NAVIGASI
+   ========================================== */
+.sidebar {
+  width: 260px;
+  background-color: #1e293b;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.brand h2 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+}
+
+.brand h2 span {
+  font-size: 0.75rem;
+  color: var(--primary);
+  display: block;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.menu-item.active {
+  border-left: 4px solid var(--primary);
+}
+
+/* ==========================================
+   4. KONTEN UTAMA & TOPBAR
+   ========================================== */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.mobile-menu-toggle,
+.mobile-menu-close {
+  display: none;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  width: 300px;
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  outline: none;
+  width: 100%;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-name {
+  font-weight: 600;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   5. STATISTIK & CARD COMPONENTS
+   ========================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  font-size: 1.8rem;
+}
+
+.stat-card h3 {
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.stat-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.access-card {
+  margin-top: 1.5rem;
+}
+
+.access-summary {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.empty-state {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+/* ==========================================
+   6. TABEL DAFTAR BAB NOVEL & FILTER
+   ========================================== */
+.filter-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filter-btn.active {
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.data-table th, 
+.data-table td {
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+.badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.badge-secondary { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
+
+.btn-action {
+  background: var(--bg-hover);
+  border: none;
+  color: var(--text-main);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-action:hover {
+  background: #475569;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ==========================================
+   7. MODAL BUKU DIGITAL & NOTIFIKASI TOAST
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.toast {
+  background: #1e293b;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   8. TAMPILAN PONSEL
+   ========================================== */
+@media (max-width: 1280px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .content-grid {
+    grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr);
+  }
+}
+
+/* Laptop kecil dan tablet landscape */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sidebar {
+    width: 200px;
+    padding: 1rem 0.75rem;
+  }
+
+  .brand h2 {
+    font-size: 1.05rem;
+  }
+
+  .menu-item {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.7rem;
+  }
+
+  .main-content {
+    padding: 1.25rem;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    display: block;
+  }
+
+  .sidebar {
+    background-color: var(--bg-card);
+    height: 100vh;
+    left: 0;
+    max-width: 300px;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    width: 86%;
+    z-index: 200;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .sidebar::after {
+    color: var(--text-muted);
+    content: 'Geser menu untuk memilih halaman';
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .mobile-menu-toggle {
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1.2rem;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+  }
+
+  .mobile-menu-close {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-main);
+    cursor: pointer;
+    display: block;
+    font-size: 1.2rem;
+    height: 34px;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    width: 34px;
+  }
+
+  .main-content {
+    min-height: 100vh;
+  }
+
+  .topbar {
+    position: relative;
+  }
+
+  .sidebar.mobile-open + .main-content::before {
+    background: rgba(0, 0, 0, 0.55);
+    content: '';
+    inset: 0;
+    position: fixed;
+    z-index: 150;
+  }
+
+  .sidebar .brand {
+    padding-right: 3rem;
+  }
+
+  .sidebar {
+    padding: 0.75rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .brand {
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.4rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .menu-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 1rem;
+    overflow: visible;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .card-header .btn-primary {
+    width: 100%;
+  }
+
+  .filter-tabs {
+    overflow-x: auto;
+  }
+
+  .filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .data-table,
+  .data-table thead,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .data-table thead {
+    display: none;
+  }
+
+  .data-table tr {
+    background: rgba(51, 65, 85, 0.35);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    padding: 0.6rem;
+  }
+
+  .data-table td {
+    align-items: center;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 0.65rem 0.25rem;
+  }
+
+  .data-table td::before {
+    color: var(--text-muted);
+    content: attr(data-label);
+    flex: 0 0 6.5rem;
+    font-size: 0.75rem;
+  }
+
+  .data-table td:last-child {
+    align-items: flex-start;
+    border-bottom: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .data-table td:last-child::before {
+    width: 100%;
+  }
+
+  .data-table .btn-action {
+    margin-right: 0 !important;
+  }
+
+  .table-responsive {
+    overflow: visible;
+  }
+
+  #page-buat-bab form > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #page-buat-bab form > div > div > div[style*="left: 50%"] {
+    display: none;
+  }
+
+  #page-buat-bab form > div > div > div:nth-of-type(2) {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  #reader-modal-overlay > div {
+    width: calc(100% - 1rem) !important;
+    max-height: calc(100vh - 1rem);
+    overflow-y: auto;
+    padding: 0.75rem !important;
+  }
+
+  #reader-modal-overlay > div > div {
+    min-height: 0 !important;
+    padding: 1.25rem !important;
+  }
+
+  #reader-modal-body {
+    height: min(45vh, 320px) !important;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+/* HP kecil */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.75rem;
+  }
+
+  .stats-grid {
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-card {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.9rem;
+  }
+
+  .stat-icon {
+    font-size: 1.4rem;
+  }
+
+  .stat-card h3 {
+    font-size: 1rem;
+  }
+
+  .stat-card p {
+    font-size: 0.7rem;
+  }
+
+  .card {
+    padding: 0.85rem;
+  }
+
+  .data-table td {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .data-table td::before {
+    flex-basis: auto;
+  }
+
+  .data-table td:last-child {
+    flex-direction: row;
+    gap: 0.4rem;
+  }
+
+  .data-table td:last-child::before {
+    flex-basis: 100%;
+  }
+
+  .data-table .btn-action {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.45rem;
+  }
+
+  #page-buat-bab form > div {
+    padding: 0.75rem !important;
+  }
+
+  #page-buat-bab form > div > div > div {
+    padding: 1rem !important;
+  }
+
+  #page-buat-bab form > div > div > div:last-child > div:last-child {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  #page-buat-bab form > div > div > div:last-child .btn-primary {
+    width: 100%;
+  }
+
+  #reader-modal-overlay > div > div > div:last-child {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  #reader-modal-overlay > div > div > div:last-child .btn-secondary {
+    width: 100%;
+  }
+}
